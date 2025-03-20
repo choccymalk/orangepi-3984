@@ -1,4 +1,6 @@
 #!/bin/bash
+rm -r CMakeCache.txt CMakeFiles
+cmake .
 echo 'Building rockchip_npu with stub LAPACK/BLAS libraries'
 # Build the project
 make -j$(nproc)
@@ -9,7 +11,7 @@ mkdir -p deploy/bin deploy/lib
 # Copy the executable and necessary libraries
 cp rockchip_npu deploy/bin/
 # The stub liblapack is now statically linked, so no need to copy it.
-cp /home/bentley/midas-with-yolov5/rockchip-npu/3rdparty/static/librknnrt.so deploy/lib/
+cp ./3rdparty/static/librknnrt.so deploy/lib/
 
 # Find libraries needed by the executable, excluding problematic ones.
 echo 'Copying needed libraries...'
