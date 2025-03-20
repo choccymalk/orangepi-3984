@@ -1,0 +1,1 @@
+/usr/bin/aarch64-linux-gnu-g++ --sysroot=/usr/lib/aarch64-linux-gnu  -march=armv8.2-a -Ofast -std=c++23 -Ofast CMakeFiles/rockchip_npu.dir/src/main.cpp.o -o rockchip_npu  -Wl,-rpath,/home/bentley/midas-with-yolov5/rockchip-npu/3rdparty/static: /home/bentley/midas-with-yolov5/rockchip-npu/3rdparty/static/librknnrt.so -lopencv_core -lopencv_imgproc -lopencv_videoio -lpthread -ldl 

@@ -1,0 +1,8 @@
+/home/bentley/midas-with-yolov5/rockchip-npu/CMakeFiles/lapack_stub.dir
+/home/bentley/midas-with-yolov5/rockchip-npu/CMakeFiles/rockchip_npu.dir
+/home/bentley/midas-with-yolov5/rockchip-npu/CMakeFiles/edit_cache.dir
+/home/bentley/midas-with-yolov5/rockchip-npu/CMakeFiles/rebuild_cache.dir
+/home/bentley/midas-with-yolov5/rockchip-npu/CMakeFiles/list_install_components.dir
+/home/bentley/midas-with-yolov5/rockchip-npu/CMakeFiles/install.dir
+/home/bentley/midas-with-yolov5/rockchip-npu/CMakeFiles/install/local.dir
+/home/bentley/midas-with-yolov5/rockchip-npu/CMakeFiles/install/strip.dir

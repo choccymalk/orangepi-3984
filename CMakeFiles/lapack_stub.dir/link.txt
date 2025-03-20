@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblapack.a CMakeFiles/lapack_stub.dir/lapack_stub.c.o
+/usr/bin/ranlib liblapack.a
