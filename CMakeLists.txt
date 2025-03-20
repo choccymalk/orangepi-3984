@@ -118,44 +118,4 @@ install(TARGETS rockchip_npu DESTINATION bin)
 install(FILES ${RKNN_RT_LIB} DESTINATION lib)
 install(TARGETS lapack_stub DESTINATION lib)
 
-# Create build script
-file(WRITE ${CMAKE_BINARY_DIR}/build.sh "#!/bin/bash
-echo 'Building rockchip_npu with stub LAPACK/BLAS libraries'
-make -j$(nproc)
-
-mkdir -p deploy/bin deploy/lib
-
-cp rockchip_npu deploy/bin/
-cp ${CMAKE_SOURCE_DIR}/3rdparty/static/librknnrt.so deploy/lib/
-
-echo 'Copying needed libraries...'
-
-ldd_output=$(ldd rockchip_npu 2>&1)
-if echo \"$ldd_output\" | grep -q \"not a dynamic executable\"; then
-  echo \"ldd failed; using aarch64-linux-gnu-readelf instead...\"
-  libs=$(aarch64-linux-gnu-readelf -d rockchip_npu | grep \"Shared library:\" | awk -F'[][]' '{print $2}' | grep -v 'liblapack\|libblas\|libGLX')
-else
-  libs=$(echo \"$ldd_output\" | grep '=> /' | awk '{print $3}' | grep -v 'liblapack\|libblas\|libGLX')
-fi
-
-for lib in $libs; do
-  if [ -f \"$lib\" ]; then
-    cp \"$lib\" deploy/lib/
-    cp \"$lib\" deploy/bin/
-  fi
-done
-cd deploy
-mkdir models
-cp ../yolov5.rknn models/yolov5.rknn
-cp ../depth-anything.rknn models/depth-anything.rknn
-cp ../yolov5.torchscript models/yolov5.torchscript
-cd ..
-cp camera-error.png deploy/bin/camera-error.png
-rm -f deploy.zip
-zip -9 -r deploy.zip deploy
- 
-echo 'Build complete. Deployment package in ./deploy/'
-")
-execute_process(COMMAND chmod +x ${CMAKE_BINARY_DIR}/build.sh)
-
 message(STATUS "Configuration complete. Run the build.sh script to build and prepare deployment package.")
